@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "events")
-@Data // Gera automaticamente getters, setters, equals, hashCode e toString via Lombok
+@Data
 public class Event {
 
     @Id
@@ -24,4 +24,31 @@ public class Event {
 
     @Column(columnDefinition = "TEXT")
     private String description;
+
+    @Column(nullable = false, unique = true)
+    private String codigo;
+
+    @Column(nullable = false)
+    private String status;
+
+    @Column
+    private String contato;
+
+    @Column
+    private String tipoEvento;
+
+    @Column
+    private String urgencia;
+
+    @Column
+    private Integer quantidade;
+
+    @Column
+    private String horarioInicio;
+
+    @Column
+    private String horarioFim;
+
+    @Column(columnDefinition = "TEXT")
+    private String observacoes;
 }
