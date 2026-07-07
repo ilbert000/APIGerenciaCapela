@@ -37,6 +37,7 @@ public class EventController {
         event.setDate(eventRequest.getDate());
         event.setColor(eventRequest.getColor() != null ? eventRequest.getColor() : "#ef4444");
         event.setDescription(getEventDescription(eventRequest));
+        event.setStatus(getEventStatus(eventRequest));
 
         Event savedEvent = eventRepository.save(event);
 
@@ -55,6 +56,13 @@ public class EventController {
         }
 
         return savedEvent;
+    }
+
+    private String getEventStatus(EventRequest eventRequest) {
+        if (eventRequest.getStatus() != null && !eventRequest.getStatus().isBlank()) {
+            return eventRequest.getStatus();
+        }
+        return "Aguardando Atendimento";
     }
 
     private String getEventTitle(EventRequest eventRequest) {
@@ -97,6 +105,9 @@ public class EventController {
                     event.setDate(eventDetails.getDate());
                     event.setColor(eventDetails.getColor());
                     event.setDescription(eventDetails.getDescription());
+                    if (eventDetails.getStatus() != null && !eventDetails.getStatus().isBlank()) {
+                        event.setStatus(eventDetails.getStatus());
+                    }
                     Event updatedEvent = eventRepository.save(event);
                     return ResponseEntity.ok(updatedEvent);
                 })

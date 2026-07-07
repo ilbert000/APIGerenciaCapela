@@ -24,4 +24,7 @@ public class Event {
 
     @Column(columnDefinition = "TEXT")
     private String description;
+
+    @Column(nullable = false)
+    private String status = "Aguardando Atendimento";
 }

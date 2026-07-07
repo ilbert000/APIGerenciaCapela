@@ -15,4 +15,5 @@ public class EventRequest {
     private String type;
     private String color;
     private String description;
+    private String status;
 }
